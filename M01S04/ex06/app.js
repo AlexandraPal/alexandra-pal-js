@@ -1,7 +1,7 @@
 const person = {
   name: 'Alexandra',
   surname: 'Pal',
-  age: 31,
+  age: 33,
   petOwner: false,
   skills: [
     'html',
@@ -118,8 +118,49 @@ for (let i = 0; i < friendsLength; i++) {
 console.log(totalYears);
 
 console.warn('Folosind un for, afiseaza suma anilor de nastere a persoanelor.');
+//v1
 let sumBirthYears = 0;
 for (i = 0; i < friendsLength; i++) {
   sumBirthYears += 2021 - person.friends[i].age;
 }
 console.log(sumBirthYears);
+
+//v2
+sumBirthYears = 0;
+for (let i = 0; i < friendsLength; i++) {
+  const { age } = person.friends[i];
+  sumBirthYears += 2021 - age;
+}
+console.log(sumBirthYears);
+
+console.warn(
+  'Afiseaza diferenta de varsta dintre persoana si prietenii din arrayul friends doar daca aceasta este mai mare de 2 ani.',
+);
+for (let i = 0; i < friendsLength; i++) {
+  const friend = person.friends[i];
+  const ageDiff = Math.abs(friend.age - person.age);
+
+  if (ageDiff > 2) {
+    console.log(ageDiff);
+  }
+}
+
+console.warn(
+  'Afiseaza fraza: "Intre Dragos si Larry este o diferenta de xx ani. Intre Dragos si Steven... ", doar daca varsta prietenului este impara.',
+);
+for (let i = 0; i < friendsLength; i++) {
+  const friend = person.friends[i];
+  const ageDiff = Math.abs(friend.age - person.age);
+
+  if (friend.age % 2 === 0) {
+    continue;
+  }
+
+  console.log(
+    `Intre ${person.name} si ${friend.name} este o diferena de ${ageDiff} ani.`,
+  );
+}
+
+console.warn(
+  'Folosind proprietatea length a arrayului skills si o bucla for, afiseaza in ordine inversa elementele arrayului skills. Atentie, va trebui sa numeri invers, de la length la 0.',
+);
